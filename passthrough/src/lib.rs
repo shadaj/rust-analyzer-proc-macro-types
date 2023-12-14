@@ -1,6 +1,5 @@
-extern crate proc_macro;
 use proc_macro::TokenStream;
-use quote::{quote, ToTokens};
+use quote::quote;
 
 #[proc_macro]
 pub fn passthrough(input: TokenStream) -> TokenStream {
@@ -9,14 +8,14 @@ pub fn passthrough(input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 pub fn passthrough_wrapped(input: TokenStream) -> TokenStream {
-    let input_parsed = syn::parse_macro_input!(input as syn::Expr);
-    let input_string: String = input_parsed.to_token_stream().to_string();
+    let input_string: String = input.to_string();
+    let input_2 = proc_macro2::TokenStream::from(input);
     quote! {
         {
             let _ = #input_string;
 
             {
-                #input_parsed
+                #input_2
             }
         }
     }.into()

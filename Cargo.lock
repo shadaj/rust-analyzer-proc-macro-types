@@ -13,8 +13,8 @@ dependencies = [
 name = "passthrough"
 version = "0.1.0"
 dependencies = [
+ "proc-macro2",
  "quote",
- "syn",
 ]
 
 [[package]]
@@ -33,17 +33,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae"
 dependencies = [
  "proc-macro2",
-]
-
-[[package]]
-name = "syn"
-version = "2.0.41"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "44c8b28c477cc3bf0e7966561e3460130e1255f7a1cf71931075f1c5e7a7e269"
-dependencies = [
- "proc-macro2",
- "quote",
- "unicode-ident",
 ]
 
 [[package]]
