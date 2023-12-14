@@ -10,19 +10,14 @@ pub fn passthrough(input: TokenStream) -> TokenStream {
 #[proc_macro]
 pub fn passthrough_wrapped(input: TokenStream) -> TokenStream {
     let input_parsed = syn::parse_macro_input!(input as syn::Expr);
-    let input_without_spans: syn::Expr = syn::parse_str(
-        &input_parsed.to_token_stream().to_string()
-    ).unwrap();
+    let input_string: String = input_parsed.to_token_stream().to_string();
     quote! {
-        (|| {
-            if false {
-                let _ = #input_without_spans;
-            }
+        {
+            let _ = #input_string;
 
-            #[allow(unreachable_code)]
             {
                 #input_parsed
             }
-        })()
+        }
     }.into()
 }
